@@ -2,13 +2,13 @@
 
     var app = angular.module('app', []);
 
-    app.provider('books', function () {
+    app.provider('books', function (constants) {
 
         this.$get = function () {
 
-            var appName = 'BookLogger';
-            var appDescription = 'Guess what it does, it is not that hard!';
-            var version = '1.0';
+            var appName = constants.APP_TITLE;
+            var appDescription = constants.APP_DESC;
+            var version = constants.VERSION;
 
             if (includeVersionInTitle) {
                 appName += ' ' + version;
@@ -26,8 +26,10 @@
         }
     });
 
-    app.config(function (booksProvider) {
+    app.config(function (booksProvider, constants, dataServiceProvider) {
         booksProvider.setIncludeVersionInTitle(true);
+        console.log(constants.APP_TITLE)
+        console.log(dataServiceProvider.$get)
     });
 
 }());

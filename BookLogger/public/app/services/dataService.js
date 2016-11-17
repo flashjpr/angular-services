@@ -36,19 +36,19 @@
                     reader_id: 1,
                     name: 'Simon',
                     weeklyReadingGoal: 213,
-                    totalHoursRead: 9
+                    totalMinutesRead: 129
                 },
                 {
                     reader_id: 2,
                     name: 'Andrea',
                     weeklyReadingGoal: 92,
-                    totalHoursRead: 61
+                    totalMinutesRead: 20
                 },
                 {
                     reader_id: 1,
                     name: 'Larisa',
                     weeklyReadingGoal: 19,
-                    totalHoursRead: 192
+                    totalMinutesRead: 1992
                 }
             ];
         }
