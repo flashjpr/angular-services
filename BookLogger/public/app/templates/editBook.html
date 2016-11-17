@@ -1,0 +1,31 @@
+<h3>Edit book</h3>
+
+<form role="form" class="form-horizontal">
+    <div class="form-group">
+        <label for="bookTitle" class="col-sm-1 control-label">Title</label>
+
+        <div class="col-sm-4">
+            <input id='bookTitle' type="text" class="form-control" placeholder="Title" ng-model="bookEditor.currentBook.title">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="bookAuthor" class="col-sm-1 control-label">Author</label>
+
+        <div class="col-sm-4">
+            <input id='bookAuthor' type="text" class="form-control" placeholder="Author" ng-model="bookEditor.currentBook.author">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="bookPublished" class="col-sm-1 control-label">Year</label>
+
+        <div class="col-sm-4">
+            <input id='bookPublished' type="text" class="form-control" placeholder="Year published" ng-model="bookEditor.currentBook.yearPublished">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-1 col-sm-4">
+            <button class="btn-default">Save</button>
+        </div>
+    </div>
+</form>

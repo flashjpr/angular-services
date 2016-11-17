@@ -15,17 +15,23 @@
                 {
                     book_id: 1,
                     title: 'John Papa The Great',
-                    pages: 221
+                    pages: 221,
+                    yearPublished: 2000,
+                    author: 'Steve Jobs'
                 },
                 {
                     book_id: 2,
                     title: 'Alex The Impaler',
-                    pages: 661
+                    pages: 661,
+                    yearPublished: 2010,
+                    author: 'Gods'
                 },
                 {
                     book_id: 3,
                     title: 'Why we love javaScript?',
-                    pages: 100
+                    pages: 100,
+                    yearPublished: 1999,
+                    author: 'William S.'
                 }
             ];
 
