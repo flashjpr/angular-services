@@ -4,11 +4,14 @@
         .controller('BooksController', BooksController);
 
 
-    function BooksController(books) {
+    function BooksController(books, dataService, logger) {
 
         var vm = this;
 
         vm.appName = books.appName;
+        vm.allBooks = dataService.getAllBooks();
+
+        logger.output('BooksController was created');
     }
 
 
