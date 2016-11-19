@@ -71,15 +71,13 @@
 
         vm.favoriteBook = $cookies.favoriteBook;
         vm.lastEdited = JSON.parse($cookies.lastEdited);
-        console.log('$cookies.lastEdited', JSON.parse($cookies.lastEdited));
-        console.log('vm.lastEdited',vm.lastEdited);
 
         // different types of loggers available in the $log service
-        $log.log('Logged with log');
-        $log.info('Logged with info');
-        $log.warn('Logged with warn');
-        $log.error('Logged with error');
-        $log.debug('Logged with debug');
+        // $log.log('Logged with log');
+        // $log.info('Logged with info');
+        // $log.warn('Logged with warn');
+        // $log.error('Logged with error');
+        // $log.debug('Logged with debug');
 
     }
 

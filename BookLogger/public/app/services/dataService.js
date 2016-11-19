@@ -1,92 +1,67 @@
 (function(){
 
     angular.module('app')
-        .factory('dataService',['$q', '$timeout', dataService]);
+        .factory('dataService',['$q', '$timeout', '$http', 'constants', dataService]);
 
-    function dataService($q, $timeout) {
+    function dataService($q, $timeout, $http, constants) {
 
         return {
             getAllBooks: getAllBooks,
-            getAllReaders: getAllReaders
+            getAllReaders: getAllReaders,
+            getBookByID: getBookByID,
+            updateBook: updateBook
         };
         
         function getAllBooks() {
-            var booksArray = [
-                {
-                    book_id: 1,
-                    title: 'John Papa The Great',
-                    pages: 221,
-                    yearPublished: 2000,
-                    author: 'Steve Jobs'
-                },
-                {
-                    book_id: 2,
-                    title: 'Alex The Impaler',
-                    pages: 661,
-                    yearPublished: 2010,
-                    author: 'Gods'
-                },
-                {
-                    book_id: 3,
-                    title: 'Why we love javaScript?',
-                    pages: 100,
-                    yearPublished: 1999,
-                    author: 'William S.'
+            return $http({
+                method: 'GET',
+                url: 'api/books',
+                headers: {
+                    'BookLogger-Version': constants.VERSION
                 }
-            ];
+            })
+                .then(sendResponseData)
+                .catch(sendGetBooksError);
+        }
 
-            var deferred = $q.defer();
+        function sendResponseData(response) {
+            return response.data;
+        }
+        
+        function sendGetBooksError(response) {
+            return $q.reject('Error retrievign book(s). (HTTP status: ' + response.status + ')');
+        }
 
-            $timeout(function () {
+        function getBookByID(bookID) {
 
-                var successful = true;
-                if (successful) {
-                    deferred.notify('Just getting started grabbing books');
-                    deferred.notify('I am still up, performing my job.');
-                    deferred.resolve(booksArray);
-                } else {
-                    deferred.reject('Error retrieving books');
-                }
+            return $http({
+                method: 'GET',
+                url: 'api/books/' + bookID
+            })
+                .then(sendResponseData)
+                .catch(sendGetBooksError);
+        }
 
-            }, 1);
+        function updateBook(book) {
+            return $http({
+                method: 'PUT',
+                url: 'api/books/' + book.book_id,
+                data: book
+            })
+                .then(updateBookSuccess)
+                .catch(updateBookError)
+        }
 
-            return deferred.promise;
+        function updateBookSuccess(response) {
+            return 'Book updated: ' +  response.config.data.title;
+        }
+
+        function updateBookError(response) {
+            return $q.reject('Error updating book. (HTTP status code:' + response.status + ')');
         }
 
         function getAllReaders() {
-            var readersArray = [
-                {
-                    reader_id: 1,
-                    name: 'Simon',
-                    weeklyReadingGoal: 213,
-                    totalMinutesRead: 129
-                },
-                {
-                    reader_id: 2,
-                    name: 'Andrea',
-                    weeklyReadingGoal: 92,
-                    totalMinutesRead: 20
-                },
-                {
-                    reader_id: 1,
-                    name: 'Larisa',
-                    weeklyReadingGoal: 19,
-                    totalMinutesRead: 1992
-                }
-            ];
 
-            var deferred = $q.defer();
-
-            $timeout(function () {
-                var successful = true;
-                if (successful) {
-                    deferred.resolve(readersArray);
-                } else {
-                    deferred.reject('Error retrieving readers');
-                }
-            }, 1);
-
-            return deferred.promise;
         }
     }
 
