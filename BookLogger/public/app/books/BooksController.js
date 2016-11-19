@@ -1,10 +1,10 @@
 (function() {
 
     angular.module('app')
-        .controller('BooksController',['books', 'dataService', 'logger', 'badgeService', '$q', BooksController]);
+        .controller('BooksController',['books', 'dataService', 'logger', 'badgeService', '$q', '$cookies', BooksController]);
 
 
-    function BooksController(books, dataService, logger, badgeService, $q) {
+    function BooksController(books, dataService, logger, badgeService, $q, $cookies) {
 
         var vm = this;
 
@@ -69,7 +69,11 @@
 
         vm.getBadge = badgeService.retrieveBadge;
 
-        logger.output('BooksController was created');
+        vm.favoriteBook = $cookies.favoriteBook;
+        vm.lastEdited = JSON.parse($cookies.lastEdited);
+        console.log('$cookies.lastEdited', JSON.parse($cookies.lastEdited));
+        console.log('vm.lastEdited',vm.lastEdited);
+
     }
 
 

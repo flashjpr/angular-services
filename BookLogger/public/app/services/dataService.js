@@ -48,7 +48,7 @@
                     deferred.reject('Error retrieving books');
                 }
 
-            }, 1000);
+            }, 1);
 
             return deferred.promise;
         }
@@ -84,7 +84,7 @@
                 } else {
                     deferred.reject('Error retrieving readers');
                 }
-            }, 1500);
+            }, 1);
 
             return deferred.promise;
         }

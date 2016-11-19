@@ -1,6 +1,6 @@
 (function() {
 
-    var app = angular.module('app', ['ngRoute']);
+    var app = angular.module('app', ['ngRoute','ngCookies']);
 
     app.provider('books', ['constants',function (constants) {
 
