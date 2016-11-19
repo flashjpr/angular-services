@@ -16,5 +16,17 @@
         "title": "A fictive book title",
         "author": "Anonymous",
         "year_published": "2017"
+    },
+    {
+        "book_id": 5,
+        "title": "The Alchemy of Finance",
+        "author": "George Soros",
+        "year_published": "1987"
+    },
+    {
+        "book_id": 6,
+        "title": "Alice in Wonderland",
+        "author": "Lewis Carroll",
+        "year_published": "1865"
     }
 ]

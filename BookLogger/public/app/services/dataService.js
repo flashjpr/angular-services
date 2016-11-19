@@ -20,7 +20,8 @@
                 url: 'api/books',
                 headers: {
                     'BookLogger-Version': constants.VERSION
-                }
+                },
+                transformResponse: transformGetAllBooks
             })
                 .then(sendResponseData)
                 .catch(sendGetBooksError);
@@ -33,13 +34,22 @@
         function sendGetBooksError(response) {
             return $q.reject('Error retrievign book(s). (HTTP status: ' + response.status + ')');
         }
+        
+        function transformGetAllBooks(data, headersGetter) {
+            
+            var transformed = angular.fromJson(data); //serialize the JSON into an array of objects
+            
+            transformed.forEach(function (currentValue, index, array) {
+                currentValue.dateDownloaded = new Date();
+            });
+            console.log(transformed);
+
+            return transformed;
+        }
 
         function getBookByID(bookID) {
 
-            return $http({
-                method: 'GET',
-                url: 'api/books/' + bookID
-            })
+            return $http.get('api/books/' + bookID)
                 .then(sendResponseData)
                 .catch(sendGetBooksError);
         }
@@ -64,10 +74,8 @@
 
 
         function addBook(newBook) {
-            return $http({
-                method: 'POST',
-                url: 'api/books',
-                data: newBook
+            return $http.post('api/books', newBook, {
+                transformRequest: transformPostRequest
             })
                 .then(addBookSuccess)
                 .catch(addBookError);
@@ -79,6 +87,15 @@
 
         function addBookError(response) {
             $q.reject('Error adding book. (HTTP status: ' + response.status + ')');
+        }
+        
+        function transformPostRequest(data, headersGetter) {
+
+            data.newBook = true;
+
+            console.log(data);
+
+            return JSON.stringify(data);
         }
 
         function deleteBook(bookID) {
