@@ -9,9 +9,11 @@
             getAllBooks: getAllBooks,
             getAllReaders: getAllReaders,
             getBookByID: getBookByID,
-            updateBook: updateBook
+            updateBook: updateBook,
+            addBook: addBook,
+            deleteBook: deleteBook
         };
-        
+
         function getAllBooks() {
             return $http({
                 method: 'GET',
@@ -27,7 +29,7 @@
         function sendResponseData(response) {
             return response.data;
         }
-        
+
         function sendGetBooksError(response) {
             return $q.reject('Error retrievign book(s). (HTTP status: ' + response.status + ')');
         }
@@ -60,8 +62,63 @@
             return $q.reject('Error updating book. (HTTP status code:' + response.status + ')');
         }
 
-        function getAllReaders() {
 
+        function addBook(newBook) {
+            return $http({
+                method: 'POST',
+                url: 'api/books',
+                data: newBook
+            })
+                .then(addBookSuccess)
+                .catch(addBookError);
+        }
+
+        function addBookSuccess(response) {
+            return 'Book added: ' + response.config.data.title;
+        }
+
+        function addBookError(response) {
+            $q.reject('Error adding book. (HTTP status: ' + response.status + ')');
+        }
+
+        function deleteBook(bookID) {
+            return $http({
+                method: 'DELETE',
+                url: 'api/books/' + bookID,
+            })
+                .then(deleteBookSuccess)
+                .catch(deleteBookError);
+        }
+
+        function deleteBookSuccess(response) {
+            return 'Book deleted: ';
+        }
+
+        function deleteBookError (response) {
+            $q.reject('Error deleting book. (HTTP status: ' +  response.status + ')');
+        }
+
+        function getAllReaders() {
+            return [
+                {
+                    reader_id: 1,
+                    name: 'Simon',
+                    weeklyReadingGoal: 213,
+                    totalHoursRead: 9
+                },
+                {
+                    reader_id: 2,
+                    name: 'Andrea',
+                    weeklyReadingGoal: 92,
+                    totalHoursRead: 61
+                },
+                {
+                    reader_id: 1,
+                    name: 'Larisa',
+                    weeklyReadingGoal: 19,
+                    totalHoursRead: 192
+                }
+            ]
         }
     }
 

@@ -36,6 +36,22 @@
             $log.error(reason);
         }
 
+        $log.info($routeParams.bookID);
+        vm.deleteBook = function () {
+            $log.info('in deletebook', vm.currentBook.book_id);
+            dataService.deleteBook(vm.currentBook.book_id)
+                .then(deleteBookSuccess)
+                .catch(deleteBookError)
+        };
+
+        function deleteBookSuccess(message) {
+            $log.info(message);
+            $location.path('/');
+        }
+
+        function deleteBookError(reason) {
+            $log.error(reason);
+        }
 
         vm.setAsFavorite = function () {
             $cookies.favoriteBook = vm.currentBook.title;
