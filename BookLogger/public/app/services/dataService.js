@@ -116,7 +116,7 @@
         }
 
         function getAllReaders() {
-            return [
+            var readersArray = [
                 {
                     reader_id: 1,
                     name: 'Simon',
@@ -135,7 +135,12 @@
                     weeklyReadingGoal: 19,
                     totalHoursRead: 192
                 }
-            ]
+            ];
+            var deferred = $q.defer();
+
+            deferred.resolve(readersArray);
+
+            return deferred.promise;
         }
     }
 
