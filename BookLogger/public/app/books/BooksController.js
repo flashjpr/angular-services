@@ -1,10 +1,10 @@
 (function() {
 
     angular.module('app')
-        .controller('BooksController',['books', 'dataService', 'logger', 'badgeService', '$q', '$cookies', BooksController]);
+        .controller('BooksController',['books', 'dataService', 'logger', 'badgeService', '$q', '$cookies', '$log', BooksController]);
 
 
-    function BooksController(books, dataService, logger, badgeService, $q, $cookies) {
+    function BooksController(books, dataService, logger, badgeService, $q, $cookies, $log) {
 
         var vm = this;
 
@@ -73,6 +73,13 @@
         vm.lastEdited = JSON.parse($cookies.lastEdited);
         console.log('$cookies.lastEdited', JSON.parse($cookies.lastEdited));
         console.log('vm.lastEdited',vm.lastEdited);
+
+        // different types of loggers available in the $log service
+        $log.log('Logged with log');
+        $log.info('Logged with info');
+        $log.warn('Logged with warn');
+        $log.error('Logged with error');
+        $log.debug('Logged with debug');
 
     }
 
