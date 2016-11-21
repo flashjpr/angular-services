@@ -31,6 +31,7 @@
         function getAllDataSuccess(dataArray) {
             vm.allBooks = dataArray[0];
             vm.allReaders = dataArray[1];
+            $log.awesome('Books and readers received successfully.');
         }
 
         function getAllDataError(error) {
