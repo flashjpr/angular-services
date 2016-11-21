@@ -1,6 +1,6 @@
 # Book Logger
 
-This repository contains a proof-of-concept app that some data (books) and performs various alteration to the data before displaying it to the UI. It's main focus is to try and experiment *angular services* and figure out what is the most performant way to complete any single task.
+This repository contains a proof-of-concept app that reads some data (books) and performs various alteration to the it before displaying it to the UI. It's main focus is to try and experiment *angular services* and figure out what is the most performant way to complete any single task.
 
 ## Installation
 ```sh
