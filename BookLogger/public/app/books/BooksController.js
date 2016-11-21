@@ -9,6 +9,14 @@
         var vm = this;
 
         vm.appName = books.appName;
+        
+        dataService.getUserSummary()
+            .then(getUserSummarySuccess);
+        
+        function getUserSummarySuccess(summaryData) {
+            console.log(summaryData);
+            vm.summaryData = summaryData;
+        }
 
         // var booksPromise = dataService.getAllBooks();
         // var readersPromise = dataService.getAllReaders();

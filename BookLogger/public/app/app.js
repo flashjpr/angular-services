@@ -30,7 +30,7 @@
 
         booksProvider.setIncludeVersionInTitle(true);
 
-        $logProvider.debugEnabled(true);
+        $logProvider.debugEnabled(false);
 
         $httpProvider.interceptors.push('bookLoggerInterceptor');
 

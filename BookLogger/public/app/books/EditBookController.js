@@ -12,7 +12,7 @@
         //     .catch(getBookError);
 
         vm.currentBook = BooksResource.get({book_id: $routeParams.bookID});
-        $log.log(vm.currentBook);
+        $log.log('Current book: ', vm.currentBook);
         
         function getBookSuccess(book) {
             vm.currentBook = book;
@@ -25,12 +25,14 @@
         }
 
         vm.saveBook = function () {
-            // dataService.updateBook(vm.currentBook)
-            //     .then(updateBookSuccess)
-            //     .catch(updateBookError)
+            dataService.updateBook(vm.currentBook)
+                .then(updateBookSuccess)
+                .catch(updateBookError);
 
-            vm.currentBook.$update();
-            $location.path('/');
+            // or using the $resource service
+
+            // vm.currentBook.$update();
+            // $location.path('/');
         };
 
         function updateBookSuccess(message) {
