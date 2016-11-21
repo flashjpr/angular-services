@@ -3,7 +3,7 @@
         "book_id": 1,
         "title": "Anna Karenina Naked",
         "author": "Leo Tolstoy",
-        "year_published": "1112"
+        "year_published": "11121"
     },
     {
         "book_id": 3,
@@ -22,11 +22,5 @@
         "title": "The Alchemy of Finance",
         "author": "George Soros",
         "year_published": "1987"
-    },
-    {
-        "book_id": 6,
-        "title": "Alice in Wonderland",
-        "author": "Lewis Carroll",
-        "year_published": "1865"
     }
 ]

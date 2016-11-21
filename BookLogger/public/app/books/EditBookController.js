@@ -1,23 +1,22 @@
 (function(){
     
     angular.module('app')
-        .controller('EditBookController', ['$routeParams', 'books', '$cookies','dataService','$log','$location','BooksResource', EditBookController]);
+        .controller('EditBookController', ['$routeParams', 'books', '$cookies','dataService','$log','$location','BooksResource', 'currentUser', EditBookController]);
     
-    function EditBookController($routeParams, books, $cookies, dataService, $log, $location, BooksResource) {
+    function EditBookController($routeParams, books, $cookies, dataService, $log, $location, BooksResource, currentUser) {
 
         var vm = this;
 
-        // dataService.getBookByID($routeParams.bookID)
-        //     .then(getBookSuccess)
-        //     .catch(getBookError);
+        dataService.getBookByID($routeParams.bookID)
+            .then(getBookSuccess)
+            .catch(getBookError);
 
-        vm.currentBook = BooksResource.get({book_id: $routeParams.bookID});
-        $log.log('Current book: ', vm.currentBook);
-        
+        // or use the BooksResource to get the book - less control
+        // vm.currentBook = BooksResource.get({book_id: $routeParams.bookID});
+
         function getBookSuccess(book) {
             vm.currentBook = book;
-            $cookies.lastEdited = JSON.stringify(vm.currentBook);
-            console.log('$cookies.lastEdited', vm.currentBook);
+            currentUser.lastBookEdited = vm.currentBook;
         }
 
         function getBookError(reason) {
